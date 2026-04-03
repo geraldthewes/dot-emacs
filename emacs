@@ -209,3 +209,12 @@
   (:map global-map
         ("M-0" . treemacs-select-window)
         ("C-c t t" . treemacs)))  ;; or whatever key you prefer
+
+
+(defun vterm-named (name)
+  "Launch a new vterm buffer and rename it to NAME."
+  (interactive "sVterm buffer name: ")
+  (let ((buffer-name (format "*vterm-%s*" name)))  ; or just NAME if you prefer no prefix
+    (if (get-buffer buffer-name)
+        (switch-to-buffer buffer-name)  ; reuse if it already exists
+      (vterm buffer-name))))            ; create new with that exact name
